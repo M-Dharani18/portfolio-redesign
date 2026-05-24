@@ -8,7 +8,7 @@ import ecommerce from "@/assets/images/ecommerce.png";
 const projects = [
   {
     company: "Full-Stack Platform",
-    year: "2024",
+    year: "2025",
     title: "Local Service Finder",
     description: "A full-stack platform connecting users with nearby service providers. REST APIs using Spring Boot and Hibernate. Automated schema generation with MySQL ORM.",
     tech: ["React.js", "Tailwind CSS", "Spring Boot", "MySQL"],
@@ -22,7 +22,7 @@ const projects = [
   },
   {
     company: "MERN Application",
-    year: "2024",
+    year: "2025",
     title: "Elderly Care App",
     description: "Health monitoring platform connecting caregivers, doctors, and family members. Dashboards to track health metrics and enable communication.",
     tech: ["MongoDB", "Express", "React", "Node.js"],
@@ -35,19 +35,19 @@ const projects = [
     ],
   },
   {
-    company: "Web Application",
-    year: "2023",
-    title: "URL Tracker",
-    description: "URL shortening platform with real-time analytics tracking clicks and usage patterns. Interactive dashboards to visualize user data insights.",
-    tech: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
-    github: "https://github.com/M-Dharani18/URLShortenerApp",
-    image: ecommerce,
-    results: [
-      { label: "Real-time analytics and click tracking" },
-      { label: "Interactive data visualization dashboards" },
-      { label: "Scalable URL management system" },
-    ],
-  },
+  company: "Full Stack Web Application",
+  year: "2026",
+  title: "E-Commerce Platform",
+  description: "Developed a responsive full-stack e-commerce application with product browsing, category management, shopping cart functionality, and secure user interactions for an enhanced online shopping experience.",
+  tech: ["React", "Spring Boot", "PostgreSQL", "Tailwind CSS"],
+  github: "https://github.com/M-Dharani18/E-commerce",
+  image: ecommerce,
+  results: [
+    { label: "Implemented dynamic product listing and filtering" },
+    { label: "Built responsive and user-friendly shopping interface" },
+    { label: "Integrated cart and seamless product management features" },
+  ],
+},
 ];
 
 export const ProjectsSection = () => {

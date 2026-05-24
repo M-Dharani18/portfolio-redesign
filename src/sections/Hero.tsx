@@ -1,129 +1,3 @@
-// "use client";
-// import { useEffect, useRef } from "react";
-// import Image from "next/image";
-// import memojiImage from "@/assets/images/memoji-computer.png";
-
-// export const HeroSection = () => {
-//   const heroRef = useRef<HTMLDivElement>(null);
-
-//   useEffect(() => {
-//     // Entrance animations
-//     const el = heroRef.current;
-//     if (!el) return;
-//     const children = el.querySelectorAll("[data-animate]");
-//     children.forEach((child, i) => {
-//       (child as HTMLElement).style.opacity = "0";
-//       (child as HTMLElement).style.transform = "translateY(30px)";
-//       setTimeout(() => {
-//         (child as HTMLElement).style.transition = "opacity 0.8s ease, transform 0.8s ease";
-//         (child as HTMLElement).style.opacity = "1";
-//         (child as HTMLElement).style.transform = "translateY(0)";
-//       }, 200 + i * 120);
-//     });
-//   }, []);
-
-//   return (
-//     <section
-//       id="hero"
-//       className="hero-bg relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-//     >
-//       {/* Decorative sparkle stars */}
-//       <div className="sparkle-1 absolute top-[20%] left-[12%] text-[#6ee7b7] text-2xl pointer-events-none">✦</div>
-//       <div className="sparkle-2 absolute top-[30%] right-[15%] text-[#38bdf8] text-xl pointer-events-none">✦</div>
-//       <div className="sparkle-3 absolute bottom-[30%] left-[20%] text-[#6ee7b7] text-lg pointer-events-none">✦</div>
-//       <div className="sparkle-1 absolute top-[60%] right-[10%] text-[#38bdf8] text-2xl pointer-events-none">✦</div>
-
-//       {/* Glowing orb rings */}
-//       <div className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/4 pointer-events-none">
-//         <div className="glow-pulse w-[500px] h-[500px] rounded-full bg-[#6ee7b7]/10 blur-3xl" />
-//       </div>
-//       <div className="absolute left-1/2 top-10 -translate-x-1/2 pointer-events-none">
-//         {[500, 680, 860, 1040].map((size, i) => (
-//           <div
-//             key={size}
-//             className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[#6ee7b7]/10"
-//             style={{ width: size, height: size }}
-//           />
-//         ))}
-//       </div>
-
-//       <div ref={heroRef} className="container relative z-10 flex flex-col items-center text-center gap-6 pb-20">
-//         {/* Avatar */}
-//         <div data-animate className="float-anim">
-//           <div className="relative inline-block">
-//             <div className="absolute inset-0 rounded-full bg-[#6ee7b7]/20 blur-xl scale-110" />
-//             <Image
-//               src={memojiImage}
-//               alt="Dharani"
-//               width={110}
-//               height={110}
-//               className="relative z-10 drop-shadow-2xl"
-//             />
-//           </div>
-//         </div>
-
-//         {/* Available badge */}
-//         <div data-animate className="inline-flex items-center gap-3 bg-[#0d1117] border border-white/10 rounded-full px-5 py-2 text-sm">
-//           <span className="relative flex h-2.5 w-2.5">
-//             <span className="ping-dot absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-//             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400" />
-//           </span>
-//           <span className="text-white/80 font-medium">Available for new projects</span>
-//         </div>
-
-//         {/* Headline */}
-//         <h1 data-animate className="font-['Calistoga'] text-4xl md:text-6xl lg:text-7xl leading-tight max-w-3xl">
-//           Building{" "}
-//           <span className="gradient-text">Exceptional</span>
-//           <br />
-//           User Experiences
-//         </h1>
-
-//         {/* Sub */}
-//         <p data-animate className="text-white/60 text-base md:text-lg max-w-xl leading-relaxed">
-//           I specialize in transforming designs into functional, high-performing web applications.
-//           Computer Science &amp; Design student at KEC — let&apos;s build your next project.
-//         </p>
-
-//         {/* CTAs */}
-//         <div data-animate className="flex flex-wrap gap-4 justify-center">
-//           <a
-//             href="#projects"
-//             className="inline-flex items-center gap-2 border border-white/20 text-white/90 px-7 py-3 rounded-full text-sm font-semibold hover:bg-white/5 hover:border-white/40 transition-all duration-200"
-//           >
-//             Explore My Work
-//             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-//             </svg>
-//           </a>
-//           <a
-//             href="#contact"
-//             className="inline-flex items-center gap-2 bg-white text-gray-950 px-7 py-3 rounded-full text-sm font-semibold hover:bg-[#6ee7b7] transition-colors duration-200 shadow-[0_0_30px_rgba(110,231,183,0.3)]"
-//           >
-//             <span>👋</span>
-//             Let&apos;s Connect
-//           </a>
-//         </div>
-
-//         {/* Resume download */}
-//         <div data-animate>
-//           <a
-//             href="/resume.pdf"
-//             download
-//             className="inline-flex items-center gap-2 text-white/40 hover:text-[#6ee7b7] transition-colors duration-200 text-sm group"
-//           >
-//             <svg className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-//               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-//             </svg>
-//             Download Resume
-//           </a>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-
 "use client";
 import { useEffect, useRef } from "react";
 import Image from "next/image";
@@ -258,40 +132,53 @@ export const HeroSection = () => {
             A developer who
           </p>
 
-          {/* Big quote headline */}
-          <h1 data-animate className="font-['Clash Display'] text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-white">
-            Writes the code,
-            <br />
-            then{" "}
-            <span className="relative inline-block">
-              <span className="gradient-text">ships</span>
-              {/* Underline oval accent */}
-              <svg
-                className="absolute -bottom-2 left-0 w-full"
-                viewBox="0 0 120 14"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <ellipse cx="60" cy="7" rx="58" ry="5" stroke="url(#grad)" strokeWidth="1.5" fill="none"/>
-                <defs>
-                  <linearGradient id="grad" x1="0" y1="0" x2="120" y2="0">
-                    <stop offset="0%" stopColor="#6ee7b7" />
-                    <stop offset="100%" stopColor="#38bdf8" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </span>
-            {" "}the dream.
-          </h1>
+         {/* Big quote headline */}
+<h1
+  data-animate
+  className="font-['Clash Display'] text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-[1.1] text-white"
+>
+  Judges 
+  <br />
+  <span className="relative inline-block">
+    <span className="gradient-text">UI</span>
 
-          {/* Tagline */}
-          <p data-animate className="text-white/50 text-sm md:text-base max-w-md leading-relaxed">
-            Because good code isn&apos;t just functional — it&apos;s felt.
-          </p>
+    {/* Underline oval accent */}
+    <svg
+      className="absolute -bottom-2 left-0 w-full"
+      viewBox="0 0 120 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <ellipse
+        cx="60"
+        cy="7"
+        rx="58"
+        ry="5"
+        stroke="url(#grad)"
+        strokeWidth="1.5"
+        fill="none"
+      />
+      <defs>
+        <linearGradient id="grad" x1="0" y1="0" x2="120" y2="0">
+          <stop offset="0%" stopColor="#6ee7b7" />
+          <stop offset="100%" stopColor="#38bdf8" />
+        </linearGradient>
+      </defs>
+    </svg>
+  </span>{" "}
+  before code...
+</h1>
 
+{/* Tagline */}
+<p
+  data-animate
+  className="text-white/50 text-sm md:text-base max-w-md leading-relaxed"
+>
+  Because users don't read your functions, they feel your interface.
+</p>
           {/* Sub description */}
           <p data-animate className="text-white/40 text-sm max-w-md leading-relaxed">
-            CS &amp; Design student at KEC. I turn ideas into high-performing web experiences that look as good as they work.
+            I design with a developer’s mindset and develop with a designer’s eye. CS & Design student at KEC crafting purposeful full-stack applications.
           </p>
 
           {/* CTAs */}
@@ -317,8 +204,8 @@ export const HeroSection = () => {
           {/* Resume download */}
           <div data-animate>
             <a
-              href="/resume.pdf"
-              download
+              href="/Dharani_Resume.pdf"
+              download="Dharani_M_Resume.pdf"
               className="inline-flex items-center gap-2 text-white/30 hover:text-[#6ee7b7] transition-colors duration-200 text-sm group"
             >
               <svg className="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

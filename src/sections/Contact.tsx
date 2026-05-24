@@ -160,8 +160,7 @@ export const ContactSection = () => {
                 className="text-sm max-w-sm mx-auto leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.4)" }}
               >
-                Open to freelance projects, full-time roles, and interesting
-                collaborations — no hidden costs, no commitments.
+                Currently open to internships, freelance projects, full-time opportunities, and collaborative tech ventures.
               </p>
             </div>
 

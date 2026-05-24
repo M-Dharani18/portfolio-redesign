@@ -13,7 +13,7 @@ const items = [
     accentBg: "rgba(56,189,248,0.07)",
     accentBorder: "rgba(56,189,248,0.2)",
     points: [
-      "Built backend applications using Java and Spring Boot fundamentals",
+      "Built backend application using Java and Spring Boot fundamentals",
       "Worked with MySQL databases for data storage and retrieval",
       "Focused on application workflows, backend logic, and debugging techniques",
     ],
