@@ -324,6 +324,40 @@ const certifications = [
 export const CertificationsSection = () => {
   return (
     <section id="certifications" className="py-16 lg:py-24 relative overflow-hidden">
+      <style>{`
+        @media (max-width: 767px) {
+          .cert-card-image {
+            aspect-ratio: 16 / 9 !important;
+            max-height: 120px !important;
+          }
+          .cert-card-body {
+            padding: 8px 10px !important;
+          }
+          .cert-card-title {
+            font-size: 12px !important;
+            margin-bottom: 4px !important;
+            line-height: 1.2 !important;
+          }
+          .cert-card-badge {
+            font-size: 7px !important;
+            padding: 2px 4px !important;
+          }
+          .cert-card-meta {
+            font-size: 9px !important;
+          }
+          .cert-card-id {
+            font-size: 14px !important;
+          }
+          .cert-wrapper {
+            margin-bottom: 8px !important;
+          }
+          .cert-pin {
+            width: 16px !important;
+            height: 16px !important;
+            top: -8px !important;
+          }
+        }
+      `}</style>
 
       {/* Lined paper background */}
       <div
@@ -373,19 +407,19 @@ export const CertificationsSection = () => {
           </svg>
 
           {/* Two-column grid — narrower cards via smaller container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8" style={{ rowGap: "0px" }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 max-w-xs md:max-w-none mx-auto md:mx-0" style={{ rowGap: "0px" }}>
             {certifications.map((cert, i) => {
               const isLeft = cert.side === "left";
               return (
                 <AnimateOnScroll key={cert.id}>
-                  <div className={`relative z-10 ${isLeft ? "" : "md:mt-24"} mb-12`}>
+                  <div className={`relative z-10 ${isLeft ? "" : "md:mt-24"} mb-12 cert-wrapper`}>
                     <div
                       className={`${cert.rotate} transition-transform duration-500 hover:rotate-0 hover:scale-105 cursor-pointer`}
                       style={{ filter: "drop-shadow(2px 8px 20px rgba(0,0,0,0.36))" }}
                     >
                       {/* Pin */}
                       <div
-                        className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center"
+                        className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center cert-pin"
                         aria-hidden="true"
                       >
                         <div
@@ -405,13 +439,13 @@ export const CertificationsSection = () => {
                       <div className="rounded-xl overflow-hidden" style={{ backgroundColor: cert.cardBg }}>
 
                         {/* Image */}
-                        <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+                        <div className="relative w-full cert-card-image" style={{ aspectRatio: "16/9" }}>
                           {cert.image ? (
                             <Image src={cert.image} alt={cert.name} fill className="object-cover" />
                           ) : (
                             <div
                               className="w-full h-full flex flex-col items-center justify-center gap-2"
-                              style={{ backgroundColor: cert.cardBg, filter: "brightness(0.93)" }}
+                              style={{ backgroundColor: cert.cardBg, filter: "brightness(0.93)", aspectRatio: "16/9" }}
                             >
                               <div
                                 className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm font-['Clash Display']"
@@ -428,16 +462,16 @@ export const CertificationsSection = () => {
                         </div>
 
                         {/* Body */}
-                        <div className="px-4 pt-3 pb-3">
+                        <div className="px-4 pt-3 pb-3 cert-card-body">
                           <div className="flex items-center justify-between mb-2">
                             <span
-                              className="text-xl font-bold font-['Clash Display'] opacity-15"
+                              className="text-xl font-bold font-['Clash Display'] opacity-15 cert-card-id"
                               style={{ color: cert.badgeColor }}
                             >
                               {cert.id}
                             </span>
                             <span
-                              className="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full"
+                              className="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full cert-card-badge"
                               style={{ backgroundColor: cert.badgeBg, color: cert.badgeColor }}
                             >
                               {cert.issuer}
@@ -445,15 +479,15 @@ export const CertificationsSection = () => {
                           </div>
 
                           <h3
-                            className="font-['Clash Display'] text-base leading-snug mb-1.5"
+                            className="font-['Clash Display'] text-base leading-snug mb-1.5 cert-card-title"
                             style={{ color: "#1e1e2e" }}
                           >
                             {cert.name}
                           </h3>
 
                           <div className="flex items-center justify-between">
-                            <p className="text-[11px]" style={{ color: "#94a3b8" }}>{cert.date}</p>
-                            <span className="flex items-center gap-1 text-[9px] font-medium" style={{ color: cert.badgeColor }}>
+                            <p className="text-[11px] cert-card-meta" style={{ color: "#94a3b8" }}>{cert.date}</p>
+                            <span className="flex items-center gap-1 text-[9px] font-medium cert-card-meta" style={{ color: cert.badgeColor }}>
                               <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true">
                                 <path d="M5 0L6.18 3.27L9.51 3.09L7 5.14L7.87 8.5L5 6.6L2.13 8.5L3 5.14L0.49 3.09L3.82 3.27Z" />
                               </svg>
