@@ -68,6 +68,18 @@ const socialCards = [
 export const ContactSection = () => {
   return (
     <section id="contact" className="py-20 lg:py-24">
+      <style>{`
+        @media (min-width: 768px) {
+          .contact-cards-desktop {
+            bottom: -28px !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+          }
+          .contact-main-card {
+            padding-bottom: 50px;
+          }
+        }
+      `}</style>
       <div className="container max-w-3xl mx-auto px-4">
         <AnimateOnScroll>
 
@@ -94,12 +106,11 @@ export const ContactSection = () => {
 
           {/* ── Main card ── */}
           <div
-            className="relative rounded-3xl"
+            className="relative rounded-3xl contact-main-card"
             style={{
               background:
                 "linear-gradient(145deg, rgba(110,231,183,0.06) 0%, rgba(13,17,23,0.98) 40%, rgba(56,189,248,0.04) 100%)",
               border: "1px solid rgba(110,231,183,0.12)",
-              paddingBottom: "52px", // space for the overlapping cards
             }}
           >
             {/* Top glow */}
@@ -164,10 +175,12 @@ export const ContactSection = () => {
               </p>
             </div>
 
-            {/* ── Social cards — overlapping the bottom edge ── */}
+            {/* ── Social cards — overlapping the bottom edge on desktop, normal flow on mobile ── */}
             <div
-               className="absolute left-1/2 -translate-x-1/2 flex flex-col md:flex-row gap-3 w-[calc(100%-32px)] md:w-auto"
-               style={{ bottom: "-28px", zIndex: 20 }}
+               className="flex flex-col md:absolute md:left-1/2 md:-translate-x-1/2 md:flex-row justify-center gap-3 w-full md:w-auto px-4 md:px-0 py-6 md:py-0 contact-cards-desktop"
+               style={{ 
+                 zIndex: 20,
+               }}
             >
               {socialCards.map((s) => (
                 <a
@@ -223,10 +236,6 @@ export const ContactSection = () => {
               ))}
             </div>
           </div>
-
-          {/* Spacer so overlapping cards don't get clipped */}
-          <div className="md:hidden" style={{ height: "160px" }} />
-          <div className="hidden md:block" style={{ height: "52px" }} />
 
         </AnimateOnScroll>
       </div>
