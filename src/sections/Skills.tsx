@@ -153,7 +153,7 @@ function IconSphere({ skillList }: { skillList: Skill[] }) {
   }, []);
 
   return (
-    <div ref={containerRef} style={{ position: "relative", width: "100%", height: "450px", cursor: "grab", userSelect: "none", overflow: "hidden" , display: "flex", alignItems: "center", justifyContent: "center"}}>
+    <div ref={containerRef} style={{ position: "relative", width: "100%", height: "clamp(280px, 60vw, 450px)", cursor: "grab", userSelect: "none", overflow: "hidden" , display: "flex", alignItems: "center", justifyContent: "center"}}>
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(110,231,183,0.05) 0%, transparent 70%)" }} />
       <div style={{ position: "absolute", top: "40%", left: "50%", width: 0, height: 0 }}>
         {skillList.map((skill, i) => (
@@ -189,7 +189,7 @@ function IconSphere({ skillList }: { skillList: Skill[] }) {
         ))}
       </div>
       <div style={{
-        position: "absolute",bottom: "3px", left: "55%", transform: "translateX(-50%)",
+        position: "absolute",bottom: "3px", left: "50%", transform: "translateX(-50%)",
         padding: "3px 18px", borderRadius: "9999px",
         background: hovered ? "rgba(255,255,255,0.08)" : "transparent",
         border: hovered ? "1px solid rgba(255,255,255,0.12)" : "1px solid transparent",
