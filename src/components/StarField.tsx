@@ -10,7 +10,6 @@ export const StarField = () => {
     const ctx = canvas.getContext("2d")!;
     let animId: number;
 
-    const PARTICLE_COUNT = 80;
     const MAX_DIST = 150;
     const SPEED = 0.3;
 
@@ -29,6 +28,7 @@ export const StarField = () => {
 
     const init = () => {
       const isMobile = window.innerWidth < 768;
+      const PARTICLE_COUNT = isMobile ? 35 : 80;
       particles = Array.from({ length: PARTICLE_COUNT }, () => {
         let y;
         if (isMobile) {
