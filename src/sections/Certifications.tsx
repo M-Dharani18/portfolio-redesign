@@ -261,6 +261,8 @@ import Image from "next/image";
 import { AnimateOnScroll } from "@/components/AnimateOnScroll";
 import oracleImg from "@/assets/images/oracle.png";
 import hackerrankImg from "@/assets/images/python_basic.png";
+import springboot from "@/assets/images/Scaler_SB.png";
+import infosys from "@/assets/images/Infosys_Java.png";
 
 const certifications = [
   {
@@ -293,10 +295,10 @@ const certifications = [
   },
   {
     id: "03",
-    issuer: "Your Issuer",
-    name: "Your Certification Name Here",
-    date: "Coming soon",
-    image: null,
+    issuer: "Scaler Topics",
+    name: "Spring Boot Certification",
+    date: "May 2026",
+    image: springboot,
     pinColor: "#34d399",
     cardBg: "#f0fdf8",
     accentBar: "#10b981",
@@ -305,12 +307,13 @@ const certifications = [
     rotate: "-rotate-2",
     side: "left",
   },
+  
   {
     id: "04",
-    issuer: "Your Issuer",
-    name: "Your Certification Name Here",
-    date: "Coming soon",
-    image: null,
+    issuer: "Infosys Springboard",
+    name: "Programming using Java",
+    date: "July 2025",
+    image: infosys,
     pinColor: "#f472b6",
     cardBg: "#fdf2f8",
     accentBar: "#ec4899",

@@ -28,13 +28,23 @@ export const StarField = () => {
     };
 
     const init = () => {
-      particles = Array.from({ length: PARTICLE_COUNT }, () => ({
-        x:  Math.random() * canvas.width,
-        y:  Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * SPEED,
-        vy: (Math.random() - 0.5) * SPEED,
-        r:  Math.random() * 1.5 + 0.5,
-      }));
+      const isMobile = window.innerWidth < 768;
+      particles = Array.from({ length: PARTICLE_COUNT }, () => {
+        let y;
+        if (isMobile) {
+          // On mobile, bias particles to lower 60% of screen
+          y = canvas.height * 0.4 + Math.random() * (canvas.height * 0.6);
+        } else {
+          y = Math.random() * canvas.height;
+        }
+        return {
+          x: Math.random() * canvas.width,
+          y: y,
+          vx: (Math.random() - 0.5) * SPEED,
+          vy: (Math.random() - 0.5) * SPEED,
+          r: Math.random() * 1.5 + 0.5,
+        };
+      });
     };
 
     const draw = () => {

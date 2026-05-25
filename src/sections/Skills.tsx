@@ -76,8 +76,26 @@ function IconSphere({ skillList }: { skillList: Skill[] }) {
   const mouse = useRef({ x: 0.5, y: 0.5 });
   const positions = useRef(fibonacciSphere(skillList.length));
   const [hovered, setHovered] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => { positions.current = fibonacciSphere(skillList.length); }, [skillList.length]);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Filter skills for mobile view
+  const displayedSkills = isMobile ? skillList.slice(0, 14) : skillList;
+
+  const iconSize = isMobile ? 48 : 58;
+  const imgSize = isMobile ? 22 : 28;
+  const labelSize = isMobile ? 8 : 10;
+  const gap = isMobile ? 3 : 5;
+
+  useEffect(() => { 
+    positions.current = fibonacciSphere(displayedSkills.length); 
+  }, [displayedSkills.length, isMobile]);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -89,7 +107,7 @@ function IconSphere({ skillList }: { skillList: Skill[] }) {
       const { x: rx, y: ry } = rot.current;
       const cx = Math.cos(rx), sx = Math.sin(rx);
       const cy = Math.cos(ry), sy = Math.sin(ry);
-      const projected = positions.current.map((p, i) => {
+      const projected = positions.current.slice(0, displayedSkills.length).map((p, i) => {
         const x1 = p.x * cy - p.z * sy;
         const z1 = p.x * sy + p.z * cy;
         const y2 = p.y * cx - z1 * sx;
@@ -150,23 +168,42 @@ function IconSphere({ skillList }: { skillList: Skill[] }) {
       el.removeEventListener("touchstart", ts as EventListener);
       el.removeEventListener("touchend", te);
     };
-  }, []);
+  }, [displayedSkills.length]);
 
   return (
     <div ref={containerRef} style={{ position: "relative", width: "100%", height: "clamp(280px, 60vw, 450px)", cursor: "grab", userSelect: "none", overflow: "hidden" , display: "flex", alignItems: "center", justifyContent: "center"}}>
       <div style={{ position: "absolute", inset: 0, pointerEvents: "none", background: "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(110,231,183,0.05) 0%, transparent 70%)" }} />
-      <div style={{ position: "absolute", top: "40%", left: "50%", width: 0, height: 0 }}>
-        {skillList.map((skill, i) => (
+      <style>{`
+        .sphere-anchor {
+          position: absolute;
+          width: 0;
+          height: 0;
+        }
+        @media (max-width: 767px) {
+          .sphere-anchor {
+            top: 50% !important;
+            transform: translate(-50%, -50%) !important;
+          }
+        }
+        @media (min-width: 768px) {
+          .sphere-anchor {
+            top: 40% !important;
+            transform: translateX(-50%) !important;
+          }
+        }
+      `}</style>
+      <div className="sphere-anchor" style={{ left: "50%" }}>
+        {displayedSkills.map((skill, i) => (
           <div
             key={skill.slug + i}
             ref={(el) => { itemsRef.current[i] = el; }}
             onMouseEnter={() => setHovered(skill.name)}
             onMouseLeave={() => setHovered(null)}
-            style={{ position: "absolute", willChange: "transform, opacity, filter", transform: "translate(0,0)", display: "flex", flexDirection: "column", alignItems: "center", gap: "5px" }}
+            style={{ position: "absolute", willChange: "transform, opacity, filter", transform: "translate(0,0)", display: "flex", flexDirection: "column", alignItems: "center", gap: `${gap}px` }}
           >
             <div
               style={{
-                width: "58px", height: "58px", borderRadius: "16px",
+                width: `${iconSize}px`, height: `${iconSize}px`, borderRadius: "12px",
                 background: `${skill.color}18`,
                 border: `1.5px solid ${skill.color}38`,
                 display: "flex", alignItems: "center", justifyContent: "center",
@@ -178,13 +215,13 @@ function IconSphere({ skillList }: { skillList: Skill[] }) {
             >
               <img
                 src={`https://cdn.simpleicons.org/${skill.slug}/${skill.color.replace("#", "")}`}
-                alt={skill.name} width={28} height={28}
+                alt={skill.name} width={imgSize} height={imgSize}
                 style={{ objectFit: "contain", display: "block", pointerEvents: "none" }}
                 draggable={false}
-                onError={(e) => { e.currentTarget.outerHTML = `<span style="font-size:11px;font-weight:700;color:${skill.color}">${skill.name.slice(0,2).toUpperCase()}</span>`; }}
+                onError={(e) => { e.currentTarget.outerHTML = `<span style="font-size:${Math.round(imgSize * 0.45)}px;font-weight:700;color:${skill.color}">${skill.name.slice(0,2).toUpperCase()}</span>`; }}
               />
             </div>
-            <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap", fontWeight: 500 }}>{skill.name}</span>
+            <span style={{ fontSize: `${labelSize}px`, color: "rgba(255,255,255,0.45)", whiteSpace: "nowrap", fontWeight: 500 }}>{skill.name}</span>
           </div>
         ))}
       </div>
@@ -383,7 +420,7 @@ export const SkillsSection = () => {
       >
         {/* Sphere Card */}
         <div
-          className="card-glow"
+          className="card-glow skill-sphere-card"
           style={{
             borderRadius: "24px",
             border: "1px solid rgba(255,255,255,0.07)",
@@ -394,8 +431,18 @@ export const SkillsSection = () => {
             minHeight: "380px",
             display: "flex",
             flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
+          <style>{`
+            @media (min-width: 768px) {
+              .skill-sphere-card {
+                justify-content: flex-start !important;
+                align-items: flex-start !important;
+              }
+            }
+          `}</style>
           <div
             style={{
               position: "absolute",
