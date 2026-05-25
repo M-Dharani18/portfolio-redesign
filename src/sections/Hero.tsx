@@ -174,7 +174,7 @@ export const HeroSection = () => {
   data-animate
   className="text-white/50 text-sm md:text-base max-w-md leading-relaxed"
 >
-  Because users don't read your functions, they feel your interface.
+  Because users don&apos;t read your functions, they feel your interface.
 </p>
           {/* Sub description */}
           <p data-animate className="text-white/40 text-sm max-w-md leading-relaxed">

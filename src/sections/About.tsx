@@ -424,7 +424,7 @@ function DraggablePill({
   }, [hobby.left, hobby.top, containerRef]);
 
   const startDrag = (clientX: number, clientY: number) => {
-    if (pos.x === null) return;
+    if (pos.x === null || pos.y === null) return;
     setDrag(true);
     offset.current = { x: clientX - pos.x, y: clientY - pos.y };
   };
@@ -533,7 +533,7 @@ export const AboutSection = () => {
                       Virat Kohli
                     </p>
                     <p className="text-white/50 text-sm leading-relaxed">
-                      Virat Kohli is more than a cricketer — he's my idol and proof that discipline and self-belief can move mountains.
+                      Virat Kohli is more than a cricketer — he&apos;s my idol and proof that discipline and self-belief can move mountains.
                     </p>
                   </div>
                 </div>
