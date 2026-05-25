@@ -166,8 +166,8 @@ export const ContactSection = () => {
 
             {/* ── Social cards — overlapping the bottom edge ── */}
             <div
-              className="absolute left-1/2 -translate-x-1/2 flex gap-3"
-              style={{ bottom: "-28px", zIndex: 20 }}
+               className="absolute left-1/2 -translate-x-1/2 flex flex-col md:flex-row gap-3 w-[calc(100%-32px)] md:w-auto"
+               style={{ bottom: "-28px", zIndex: 20 }}
             >
               {socialCards.map((s) => (
                 <a
@@ -175,7 +175,7 @@ export const ContactSection = () => {
                   href={s.href}
                   target={s.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-200"
+                  className="group flex items-center gap-2.5 rounded-2xl px-4 py-3 transition-all duration-200 w-full md:w-auto"
                   style={{
                     background: "#131920",
                     border: "1px solid rgba(255,255,255,0.10)",
@@ -225,7 +225,8 @@ export const ContactSection = () => {
           </div>
 
           {/* Spacer so overlapping cards don't get clipped */}
-          <div style={{ height: "52px" }} />
+          <div className="md:hidden" style={{ height: "160px" }} />
+          <div className="hidden md:block" style={{ height: "52px" }} />
 
         </AnimateOnScroll>
       </div>
