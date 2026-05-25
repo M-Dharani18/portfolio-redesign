@@ -159,7 +159,7 @@ function IconSphere({ skillList }: { skillList: Skill[] }) {
         {skillList.map((skill, i) => (
           <div
             key={skill.slug + i}
-            ref={(el) => (itemsRef.current[i] = el)}
+            ref={(el) => { itemsRef.current[i] = el; }}
             onMouseEnter={() => setHovered(skill.name)}
             onMouseLeave={() => setHovered(null)}
             style={{ position: "absolute", willChange: "transform, opacity, filter", transform: "translate(0,0)", display: "flex", flexDirection: "column", alignItems: "center", gap: "5px" }}
