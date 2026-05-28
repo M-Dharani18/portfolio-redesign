@@ -315,7 +315,7 @@ const achievements = [
 
 export const AchievementsSection = () => {
   return (
-    <div className="py-16 lg:py-24">
+    <section id="achievements" className="py-16 lg:py-24">
       <div className="container px-4">
         <SectionHeader
           eyebrow="My Journey"
@@ -440,6 +440,6 @@ export const AchievementsSection = () => {
 
         </div>
       </div>
-    </div>
+    </section>
   );
 };

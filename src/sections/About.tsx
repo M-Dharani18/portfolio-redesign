@@ -54,6 +54,7 @@ function DraggablePill({
       const container = containerRef.current;
       const pill = pillRef.current;
       if (!container || !pill) return;
+      if (container.offsetWidth === 0) return;
       const cr = container.getBoundingClientRect();
       const pw = pill.offsetWidth;
       const ph = pill.offsetHeight;
@@ -67,10 +68,29 @@ function DraggablePill({
   }, [containerRef]);
 
   const startDrag = (clientX: number, clientY: number) => {
-    if (pos.x === null || pos.y === null) return;
-    setDrag(true);
-    offset.current = { x: clientX - pos.x, y: clientY - pos.y };
-  };
+  setDrag(true);
+  
+  let currentX = pos.x;
+  let currentY = pos.y;
+  
+  // If pos hasn't been initialized yet (was null), compute it now
+  if (currentX === null || currentY === null) {
+    const container = containerRef.current;
+    const pill = pillRef.current;
+    if (container && pill) {
+      const cr = container.getBoundingClientRect();
+      const pw = pill.offsetWidth || 90;
+      const ph = pill.offsetHeight || 36;
+      currentX = Math.min((parseFloat(hobby.left) / 100) * cr.width, cr.width - pw - 8);
+      currentY = Math.min((parseFloat(hobby.top) / 100) * cr.height, cr.height - ph - 8);
+      setPos({ x: currentX, y: currentY });
+    } else {
+      return;
+    }
+  }
+  
+  offset.current = { x: clientX - currentX, y: clientY - currentY };
+};
 
   useEffect(() => {
     if (!dragging) return;
@@ -229,7 +249,7 @@ export const AboutSection = () => {
         }
       `}</style>
 
-      <div className="py-16 lg:py-24 relative overflow-hidden">
+      <section id="about" className="py-16 lg:py-24 relative overflow-hidden">
 
         {/* ── Ambient background orbs ── */}
         <div
@@ -485,7 +505,7 @@ export const AboutSection = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

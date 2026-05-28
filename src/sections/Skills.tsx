@@ -49,7 +49,7 @@ const CATEGORIES = [
   },
 ];
 
-const SOFT_SKILLS = ["Communication", "User-Centric Thinking", "Collaboration", "Attention to Detail","Clarity in Communication"];
+const SOFT_SKILLS = ["User-Centric Thinking", "Collaboration", "Attention to Detail","Clarity in Communication"];
 
 type Skill = { name: string; slug: string; color: string; desc: string };
 
