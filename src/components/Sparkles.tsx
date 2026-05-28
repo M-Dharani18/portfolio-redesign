@@ -1,7 +1,5 @@
 /**
  * Reusable Sparkles Component
- * Add this to any section to get the sparkling effect
- * 
  * Usage:
  * <Sparkles />
  */
