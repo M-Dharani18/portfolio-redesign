@@ -1,7 +1,19 @@
 'use client';
+import { useEffect, useState } from "react";
 
 export const Footer = () => {
   const year = new Date().getFullYear();
+  const [views, setViews] = useState<number | null>(null);
+  useEffect(() => {
+  fetch("https://api.countapi.xyz/hit/dharani-portfolio/views")
+    .then((res) => res.json())
+    .then((data) => {
+      setViews(data.value);
+    })
+    .catch((error) => {
+      console.log("View counter error:", error);
+    });
+  }, []);
   return (
     <footer className="border-t py-8" style={{ borderColor: "rgba(255,255,255,0.05)" }}>
       <div className="container max-w-5xl mx-auto px-4">
@@ -13,6 +25,9 @@ export const Footer = () => {
 
           <p className="text-white/25 text-sm">
             Designed &amp; Built by Dharani M &copy; {year}
+          {views !== null && (
+            <span> • 👁 {views} Views</span>
+          )}
           </p>
 
           <div className="flex items-center gap-3">

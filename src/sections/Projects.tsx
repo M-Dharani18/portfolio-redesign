@@ -29,9 +29,9 @@ const projects = [
     github: "https://github.com/M-Dharani18/smart-medical-monitoring",
     image: elder,
     results: [
-      { label: "Multi-role platform: caregivers, doctors, family" },
-      { label: "Real-time health metric dashboards" },
-      { label: "UI designed for non-technical users" },
+      { label: "Multi-role system for doctors, caretakers, and family members" },
+      { label: "Centralized platform for prescriptions, diagnosis, and treatment tracking" },
+      { label: "Instant access to elderly health records for authorized family members" },
     ],
   },
   {
@@ -44,7 +44,7 @@ const projects = [
   image: ecommerce,
   results: [
     { label: "Implemented dynamic product listing and filtering" },
-    { label: "Built responsive and user-friendly shopping interface" },
+    { label: "Built user-friendly shopping interface and checkout process" },
     { label: "Integrated cart and seamless product management features" },
   ],
 },

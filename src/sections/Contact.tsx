@@ -155,7 +155,7 @@ export const ContactSection = () => {
                 className="font-semibold text-white mb-3"
                 style={{ fontSize: "clamp(28px,5vw,42px)", letterSpacing: "-0.02em", lineHeight: 1.15 }}
               >
-                Feel free to{" "}
+                I’d love to{" "}
                 <span
                   style={{
                     background: "linear-gradient(135deg,#6ee7b7,#38bdf8)",
@@ -164,7 +164,7 @@ export const ContactSection = () => {
                     backgroundClip: "text",
                   }}
                 >
-                  get in touch
+                  hear from you
                 </span>
               </h2>
               <p
